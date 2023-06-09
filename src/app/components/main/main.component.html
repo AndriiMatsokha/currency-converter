@@ -1,1 +1,43 @@
-<p>main works!</p>
+<div class="main">
+  <mat-form-field appearance="outline">
+    <mat-label>Favorite food1</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Pizza"
+      value="Sushi"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Favorite food2</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Pizza"
+      value="Sushi"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Favorite food1</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let food of foods"
+        [value]="food.value"
+      >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Favorite food2</mat-label>
+    <mat-select>
+      <mat-option
+        *ngFor="let food of foods"
+        [value]="food.value"
+      >
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
