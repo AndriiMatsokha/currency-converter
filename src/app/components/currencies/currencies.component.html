@@ -1,0 +1,38 @@
+<div
+  *ngIf="(currencies$ | async) as currencies"
+  class="main"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Currency 1</mat-label>
+    <input
+      matInput
+      placeholder="Input amount"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Currency 2</mat-label>
+    <input
+      matInput
+      placeholder="Input amount"
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>List of currencies 1</mat-label>
+    <mat-select placeholder="Select currency">
+      <mat-option *ngFor="let currency of currencies">
+        {{currency.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>List of currencies 2</mat-label>
+    <mat-select placeholder="Select currency">
+      <mat-option *ngFor="let currency of currencies">
+        {{currency.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
