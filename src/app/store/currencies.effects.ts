@@ -14,7 +14,10 @@ import {
   exhaustMap,
   map
 } from "rxjs/operators";
-import { Currency } from "../models/currency.model";
+import {
+  ConvertCurrencyResponse,
+  LoadManyCurrenciesResponse
+} from "../models/currency.model";
 import { CurrenciesRestService } from "../services/currencies-rest.service";
 import * as CurrenciesActions from "./currencies.actions";
 
@@ -28,15 +31,32 @@ export class CurrenciesEffects {
 
   public loadManyCurrencies$ = createEffect(() => this.actions$.pipe(
       ofType(CurrenciesActions.loadManyCurrencies),
-      exhaustMap(({ params }) =>
-        this.currenciesRestService.loadMany({ ...params }).pipe(
-          map((response: HttpResponse<Currency[]>) =>
+      exhaustMap(() =>
+        this.currenciesRestService.loadMany().pipe(
+          map((response: HttpResponse<LoadManyCurrenciesResponse>) =>
             CurrenciesActions.loadManyCurrenciesSuccess({
-              currencies: response.body || []
+              currencies: response?.body?.symbols || []
             })
           ),
           catchError((error: HttpErrorResponse) => of(
             CurrenciesActions.loadManyCurrenciesFailure({ error })
+          ))
+        )
+      )
+    )
+  );
+
+  public convertCurrency$ = createEffect(() => this.actions$.pipe(
+      ofType(CurrenciesActions.convertCurrency),
+      exhaustMap(({ params }) =>
+        this.currenciesRestService.convertCurrency(params).pipe(
+          map((response: HttpResponse<ConvertCurrencyResponse>) =>
+            CurrenciesActions.convertCurrencySuccess({
+              response: response.body
+            })
+          ),
+          catchError((error: HttpErrorResponse) => of(
+            CurrenciesActions.convertCurrencyFailure({ error })
           ))
         )
       )

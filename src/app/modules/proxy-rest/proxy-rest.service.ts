@@ -50,7 +50,9 @@ interface RestApiRequestOptions {
 }
 
 const REST_URLS: Record<string, string> = {
-
+  symbols: `symbols?`,
+  latest: `latest?base={base}&symbols={symbols}`,
+  convert: `convert?from={from}&to={to}&amount={amount}`,
 };
 
 const API_PREFIX: string = "/";
@@ -144,6 +146,7 @@ export class ProxyRestService {
 
     private resolveUrl(url: string, options?: Object, encodeUri?: string): string {
         let path = REST_URLS[url];
+        path = path?.replace("?","?access_key="+this.restBaseConfig.access_key+"&");
         if (options) {
             Object.keys(options).forEach((key: string) => {
                 if (Object.prototype.hasOwnProperty.call(options, key)) {

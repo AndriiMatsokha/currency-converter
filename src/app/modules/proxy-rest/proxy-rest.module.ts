@@ -22,7 +22,8 @@ export class ProxyRestModule {
           provide: REST_BASE_CONFIG,
           useValue: {
             publicGateway: config.restConfig?.publicGateway,
-            production: config.restConfig?.production
+            production: config.restConfig?.production,
+            access_key: config.restConfig?.access_key
           }
         }
       ]

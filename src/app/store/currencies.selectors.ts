@@ -1,5 +1,4 @@
 import { createSelector } from "@ngrx/store";
-import { Currency } from "../models/currency.model";
 import * as CurrenciesReducer from "./currencies.reducer";
 
 export interface CurrenciesFeatureState {
@@ -8,7 +7,17 @@ export interface CurrenciesFeatureState {
 
 export const selectCurrenciesState = (state: CurrenciesFeatureState): CurrenciesReducer.CurrenciesState => state.currencies;
 
-export const selectCurrencies = createSelector(
+export const selectSymbols = createSelector(
   selectCurrenciesState,
-  (state): Currency[] | null => state.currencies
+  (state): string[] | null => Object.keys(state.currencies)
+);
+
+export const selectCurrency1Amount = createSelector(
+  selectCurrenciesState,
+  (state): number | null => state.currency1Amount
+);
+
+export const selectCurrency2Amount = createSelector(
+  selectCurrenciesState,
+  (state): number | null => state.currency2Amount
 );

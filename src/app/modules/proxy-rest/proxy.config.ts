@@ -9,4 +9,5 @@ export interface ProxyConfig {
 export interface RestBaseConfig {
   production: boolean;
   publicGateway: string;
+  access_key: string;
 }

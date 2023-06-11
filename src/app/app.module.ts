@@ -28,7 +28,8 @@ import { currenciesReducer } from "./store/currencies.reducer";
     ProxyRestModule.forRoot({
       restConfig: {
         publicGateway: environment.host,
-        production: environment.production
+        production: environment.production,
+        access_key: environment.access_key,
       }
     }),
     StoreModule.forRoot({ currencies: currenciesReducer }),
