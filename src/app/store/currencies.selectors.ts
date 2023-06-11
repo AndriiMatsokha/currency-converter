@@ -7,7 +7,7 @@ export interface CurrenciesFeatureState {
 
 export const selectCurrenciesState = (state: CurrenciesFeatureState): CurrenciesReducer.CurrenciesState => state.currencies;
 
-export const selectSymbols = createSelector(
+export const selectCurrenciesSymbols = createSelector(
   selectCurrenciesState,
   (state): string[] | null => Object.keys(state.currencies)
 );
@@ -19,5 +19,15 @@ export const selectCurrency1Amount = createSelector(
 
 export const selectCurrency2Amount = createSelector(
   selectCurrenciesState,
-  (state): number | null => state.currency2Amount
+  (state): number | null => {console.log(state); return state.currency2Amount}
+);
+
+export const selectRates = createSelector(
+  selectCurrenciesState,
+  (state): any => state.rates
+);
+
+export const selectLoading = createSelector(
+  selectCurrenciesState,
+  (state): boolean => state.loading
 );

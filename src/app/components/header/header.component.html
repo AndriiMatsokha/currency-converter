@@ -1,3 +1,40 @@
-<div class="header">
+<mat-toolbar
+  *ngIf="(symbols$ | async) as symbols"
+  class="header"
+  color="primary"
+>
+  <mat-toolbar-row class="header__toolbar-row">
+    <div
+      *ngIf="(rates$ | async) as rates"
+      class="header__course-info"
+    >
+      <div
+        *ngFor="let symbol of currencies.value"
+        class="header__rate"
+      >
+        {{ symbol }}: {{ rates[symbol] }}
+      </div>
+    </div>
 
-</div>
+    <mat-form-field
+      class="header__currencies-list"
+    >
+      <mat-label>Courses currencies</mat-label>
+      <mat-select
+        #currencies
+        multiple
+        placeholder="Select currencies"
+        (valueChange)="selectedCoursesCurrenciesChange(currencies.value)"
+      >
+        <mat-option
+          *ngFor="let symbol of symbols"
+          [value]="symbol"
+        >
+          {{symbol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+

@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.main {
+  &__toolbar {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  &__toolbar-row {
+    justify-content: space-between;
+  }
+
+  &__spinner {
+    height: 20px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px 30px;
+    height: 100%;
+    min-width: 25vw;
+    padding-top: 16px;
+  }
+}

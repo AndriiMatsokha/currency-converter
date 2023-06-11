@@ -2,21 +2,22 @@ import {
   createReducer,
   on
 } from "@ngrx/store";
-import { Currency } from "../models/currency.model";
 import * as CurrenciesActions from "./currencies.actions";
 
 export interface CurrenciesState {
   loading: boolean;
-  currencies: Currency[];
+  currencies: any;
   currency1Amount: number | null;
   currency2Amount: number | null;
+  rates: any;
 }
 
 const initialState: CurrenciesState = {
   loading: false,
-  currencies: [],
+  currencies: {},
   currency1Amount: null,
-  currency2Amount: null
+  currency2Amount: null,
+  rates: {}
 };
 
 export const currenciesReducer = createReducer(
@@ -38,10 +39,12 @@ export const currenciesReducer = createReducer(
     ...state,
     currency1Amount
   })),
-  on(CurrenciesActions.setCurrency2Amount, (state, { currency2Amount }) => ({
-    ...state,
-    currency2Amount
-  })),
+  on(CurrenciesActions.setCurrency2Amount, (state, { currency2Amount }) => {
+    return {
+      ...state,
+      currency2Amount
+    }
+  }),
   on(CurrenciesActions.convertCurrency, (state) => ({
     ...state,
     loading: true
@@ -63,6 +66,19 @@ export const currenciesReducer = createReducer(
     return { ...newState, ...convertResponse };
   }),
   on(CurrenciesActions.convertCurrencyFailure, (state) => ({
+    ...state,
+    loading: false
+  })),
+  on(CurrenciesActions.loadSelectedCurrenciesCourses, (state) => ({
+    ...state,
+    loading: true
+  })),
+  on(CurrenciesActions.loadSelectedCurrenciesCoursesSuccess, (state, { rates }) => ({
+    ...state,
+    rates,
+    loading: false
+  })),
+  on(CurrenciesActions.loadSelectedCurrenciesCoursesFailure, (state) => ({
     ...state,
     loading: false
   }))

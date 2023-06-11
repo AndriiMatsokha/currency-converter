@@ -6,7 +6,6 @@ import {
 import {
   ConvertCurrencyParams,
   ConvertCurrencyResponse,
-  Currency
 } from "../models/currency.model";
 
 export const loadManyCurrencies = createAction(
@@ -15,7 +14,7 @@ export const loadManyCurrencies = createAction(
 
 export const loadManyCurrenciesSuccess = createAction(
   "[Currencies] Load Many Currencies Success",
-  props<{ currencies: Currency[] }>()
+  props<{ currencies: any }>()
 );
 
 export const loadManyCurrenciesFailure = createAction(
@@ -46,4 +45,19 @@ export const setCurrency1Amount = createAction(
 export const setCurrency2Amount = createAction(
   "[Currencies] Set Currency 2 Amount",
   props<{ currency2Amount: number }>()
+);
+
+export const loadSelectedCurrenciesCourses = createAction(
+  "[Currencies] Load Selected Currencies Courses",
+  props<{ symbols: string[] }>()
+);
+
+export const loadSelectedCurrenciesCoursesSuccess = createAction(
+  "[Currencies] Load Selected Currencies Courses Success",
+  props<{ rates: any }>()
+);
+
+export const loadSelectedCurrenciesCoursesFailure = createAction(
+  "[Currencies] Load Selected Currencies Courses Failure",
+  props<{ error: HttpErrorResponse }>()
 );

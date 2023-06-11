@@ -1,7 +1,3 @@
-export interface Currency {
-  [symbol: string]: string;
-}
-
 export interface ConvertCurrencyParams {
   from: string;
   to: string;
@@ -28,3 +24,25 @@ export interface ConvertCurrencyResponse {
   date: Date;
   result: number;
 }
+
+export interface LoadSelectedCurrenciesCoursesResponse {
+  success: boolean;
+  timestamp: number;
+  base: string,
+  date: Date;
+  rates: any;
+}
+
+// export interface Rate {
+//   [symbol: string]: number,
+//   [symbol: string]: number,
+//   [symbol: string]: number,
+//   ...
+// }
+
+// export interface Currency {
+//   [symbol: string]: string,
+//   [symbol: string]: string,
+//   [symbol: string]: string,
+//   ...
+// }

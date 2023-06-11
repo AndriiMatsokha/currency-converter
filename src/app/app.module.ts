@@ -6,7 +6,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { environment } from "../environments/environment";
 import { AppComponent } from "./app.component";
-import { CurrenciesComponent } from "./components/currencies/currencies.component";
+import { MainComponent } from "./components/main/main.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { ProxyRestModule } from "./modules/proxy-rest/proxy-rest.module";
 import { ProxyRestService } from "./modules/proxy-rest/proxy-rest.service";
@@ -22,7 +22,7 @@ import { currenciesReducer } from "./store/currencies.reducer";
   imports: [
     BrowserModule,
     HttpClientModule,
-    CurrenciesComponent,
+    MainComponent,
     BrowserAnimationsModule,
     HeaderComponent,
     ProxyRestModule.forRoot({

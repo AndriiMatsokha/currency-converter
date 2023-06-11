@@ -1,0 +1,25 @@
+.header {
+  &__toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: auto;
+  }
+
+  &__course-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(164px, 1fr));
+    gap: 5px;
+    max-width: 80%;
+    align-self: flex-start;
+  }
+
+  &__currencies-list {
+    align-self: flex-end;
+    transform: translateY(22px);
+  }
+
+  &__rate {
+    white-space: nowrap;
+  }
+}

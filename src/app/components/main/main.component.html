@@ -1,0 +1,74 @@
+<mat-card
+  *ngIf="(symbols$ | async) as symbols"
+  class="main"
+>
+  <mat-toolbar
+    class="main__toolbar"
+    color="primary"
+  >
+    <mat-toolbar-row class="main__toolbar-row">
+      Currency Converter
+      <mat-spinner
+        *ngIf="loading$ | async"
+        diameter="40"
+        color="accent"
+      ></mat-spinner>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card-content class="main__content">
+    <mat-form-field appearance="outline">
+      <mat-label>Currency 1</mat-label>
+      <input
+        #currency1
+        [value]="(currency1Amount$ | async)?.toString()"
+        matInput
+        placeholder="Input amount"
+        (input)="setCurrency1Amount(list1Symbol, list2Symbol, currency1.value)"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Currency 2</mat-label>
+      <input
+        #currency2
+        [value]="(currency2Amount$ | async)?.toString()"
+        matInput
+        placeholder="Input amount"
+        (input)="setCurrency2Amount(list2Symbol, list1Symbol, currency2.value)"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>List of currencies 1</mat-label>
+      <mat-select
+        [(value)]="list1Symbol"
+        placeholder="Select currency"
+        (valueChange)="convertCurrency(list1Symbol, list2Symbol, currency1.value)"
+      >
+        <mat-option
+          *ngFor="let symbol of symbols"
+          [value]="symbol"
+        >
+          {{symbol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>List of currencies 2</mat-label>
+      <mat-select
+        [(value)]="list2Symbol"
+        placeholder="Select currency"
+        (valueChange)="convertCurrency(list2Symbol, list1Symbol, currency2.value)"
+      >
+        <mat-option
+          *ngFor="let symbol of symbols"
+          [value]="symbol"
+        >
+          {{symbol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
+

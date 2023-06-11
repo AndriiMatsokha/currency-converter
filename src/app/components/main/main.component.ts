@@ -9,35 +9,42 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { Observable } from "rxjs";
 import { CurrenciesStoreService } from "../../services/currencies-store.service";
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: "app-currencies",
+  selector: "app-main",
   standalone: true,
   imports: [
     CommonModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule
   ],
-  templateUrl: "./currencies.component.html",
-  styleUrls: ["./currencies.component.scss"],
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CurrenciesComponent implements OnInit {
+export class MainComponent implements OnInit {
   constructor(private currenciesStoreService: CurrenciesStoreService) {
   }
 
   public symbols$!: Observable<string[] | null>;
   public currency1Amount$!: Observable<number | null>;
   public currency2Amount$!: Observable<number | null>;
+  public loading$!: Observable<boolean>;
   public list1Symbol: string | null = null;
   public list2Symbol: string | null = null;
 
   public ngOnInit(): void {
-    this.currenciesStoreService.loadManyCurrencies();
-    this.symbols$ = this.currenciesStoreService.symbols$;
+    this.symbols$ = this.currenciesStoreService.currenciesSymbols$;
     this.currency1Amount$ = this.currenciesStoreService.currency1Amount$;
     this.currency2Amount$ = this.currenciesStoreService.currency2Amount$;
+    this.loading$ = this.currenciesStoreService.loading$;
   }
 
   public setCurrency1Amount(from: string | null, to: string | null, amount: string | null): void {
