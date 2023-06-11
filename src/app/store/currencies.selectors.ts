@@ -19,7 +19,7 @@ export const selectCurrency1Amount = createSelector(
 
 export const selectCurrency2Amount = createSelector(
   selectCurrenciesState,
-  (state): number | null => {console.log(state); return state.currency2Amount}
+  (state): number | null => state.currency2Amount
 );
 
 export const selectRates = createSelector(

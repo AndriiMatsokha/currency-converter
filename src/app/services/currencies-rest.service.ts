@@ -27,18 +27,20 @@ export class CurrenciesRestService {
       }
     }));
 
+    //Працює
     //this.httpProxy.get<LoadManyCurrenciesResponse>("symbols");
   }
 
   public convertCurrency(params: ConvertCurrencyParams): Observable<HttpResponse<ConvertCurrencyResponse>> {
+    //Конвертація відбутися при введених любих from, to і amount1 = 60
     return of(new HttpResponse<ConvertCurrencyResponse>(
       {
         body: {
           success: true,
           query: {
-            from: "UAH",
-            to: "USD",
-            amount: 60,
+            from: params.from,
+            to: params.to,
+            amount: params.amount,
           },
           info: {
             timestamp: 0,
@@ -51,6 +53,7 @@ export class CurrenciesRestService {
       }
     ));
 
+    //Немає доступу на безкоштовній підписці
     //this.httpProxy.get<ConvertCurrencyResponse>("convert", { urlParameters: params });
   }
 
@@ -67,7 +70,9 @@ export class CurrenciesRestService {
       }
     ))
 
+    //Немає доступу на безкоштовній підписці
     //this.httpProxy.get<LoadSelectedCurrenciesCoursesResponse>("latest", { urlParameters: { base: "UAH", symbols } });
+    //Працює
     //this.httpProxy.get<LoadSelectedCurrenciesCoursesResponse>("latest", { urlParameters: symbols });
   }
 }

@@ -33,6 +33,9 @@ export interface LoadSelectedCurrenciesCoursesResponse {
   rates: any;
 }
 
+//Приклад того в якому форматі приходять валюти і рейтенги.
+//Кількість полів і їх назва завжди не відома, тому не бачу, як передбачити модель.
+//Через це замінив їх на any. Хоч, і дуже не хотів.
 // export interface Rate {
 //   [symbol: string]: number,
 //   [symbol: string]: number,
